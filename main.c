@@ -1,4 +1,3 @@
-// DELIVERY 1
 // AUTHORS: LUIGI EMANUELE ZIPPO AND PIETRO PELUSO
 
 #include<stdio.h>
@@ -25,7 +24,7 @@ struct tree{
     
     // FUNCTIONS
     
-tree_pointer ABR_create () {
+tree_pointer BRT_create () {
     
     // create empty tree
     //
@@ -39,7 +38,7 @@ tree_pointer ABR_create () {
 
 //---------------------------------------------------------------------------------------------
     
-tree_pointer ABR_insert (tree_pointer T, int key) {
+tree_pointer BRT_insert (tree_pointer T, int key) {
     
     // insertion of a node in the tree
     //
@@ -52,12 +51,12 @@ tree_pointer ABR_insert (tree_pointer T, int key) {
         
         if(key>T->key) {
             // if the key of T is less than key, I need to add to the right, so I recursively call the function on the right subtree
-            T->dx=ABR_insert(T->dx, key);
+            T->dx=BRT_insert(T->dx, key);
         }
         
         else if (key<T->key) {
             // if the key of T is greater than key, I need to add to the left, so I recursively call the function on the left subtree
-            T->sx=ABR_insert(T->sx, key);
+            T->sx=BRT_insert(T->sx, key);
         }
         
     }
@@ -250,7 +249,7 @@ tree_pointer delete_root(tree_pointer T){
 
 //---------------------------------------------------------------------------------------------
 
-tree_pointer ABR_delete(tree_pointer T, int key) {
+tree_pointer BRT_delete(tree_pointer T, int key) {
     
     // delete element in the tree with specific key
     //
@@ -269,13 +268,13 @@ tree_pointer ABR_delete(tree_pointer T, int key) {
         if(T->key > key) {
             
             // if the key of T is greater than key the node containing key will be on the left, so I recursively call the function on the left subtree of T
-            T->sx= ABR_delete(T->sx,key);
+            T->sx= BRT_delete(T->sx,key);
         }
     
         else if (T->key < key){
             
             // if the key of T is less than key the node containing key will be on the right, so I recursively call the function on the right subtree of T
-            T->dx = ABR_delete(T->dx, key);
+            T->dx = BRT_delete(T->dx, key);
         }
     
         else {
@@ -290,7 +289,7 @@ tree_pointer ABR_delete(tree_pointer T, int key) {
 
 //---------------------------------------------------------------------------------------------
 
-tree_pointer ABR_destroy_key(tree_pointer T,int k) {
+tree_pointer BRT_destroy_key(tree_pointer T,int k) {
     
     // delete subtree
     //
@@ -308,10 +307,10 @@ tree_pointer ABR_destroy_key(tree_pointer T,int k) {
             // if I immediately find the key then I recursively call the function on the left and right subtrees of T
             
             if (T->sx)
-                ABR_destroy_key(T->sx, (T->sx)->key);
+                BRT_destroy_key(T->sx, (T->sx)->key);
             
             if (T->dx)
-                ABR_destroy_key(T->dx, (T->dx)->key);
+                BRT_destroy_key(T->dx, (T->dx)->key);
             
             free(T);
         }
@@ -320,11 +319,11 @@ tree_pointer ABR_destroy_key(tree_pointer T,int k) {
             
             // if the key of T is less than k the node containing k will be on the right, so I recursively call the function on the right subtree, save the output in a temporary variable
             if (k>T->key)
-                temp=ABR_destroy_key(T->dx, k);
+                temp=BRT_destroy_key(T->dx, k);
             
             // if the key of T is greater than k the node containing k will be on the left, so I recursively call the function on the left subtree, save the output in a temporary variable
             else if (k<T->key)
-                temp=ABR_destroy_key(T->sx, k);
+                temp=BRT_destroy_key(T->sx, k);
             
             // compare, iteration by iteration, the subtree saved in temp
             if (T->dx==temp)
@@ -342,7 +341,7 @@ tree_pointer ABR_destroy_key(tree_pointer T,int k) {
 
 //---------------------------------------------------------------------------------------------
 
-void ABR_destroy (tree_pointer T) {
+void BRT_destroy (tree_pointer T) {
     
     // destroy entire tree
     //
@@ -360,7 +359,7 @@ void ABR_destroy (tree_pointer T) {
     else {
         
         // if the tree is not NULL call ABR_destroy_key on the root
-        ABR_destroy_key(T, T->key);
+        BRT_destroy_key(T, T->key);
         return;
     }
     
@@ -368,7 +367,7 @@ void ABR_destroy (tree_pointer T) {
 
 //---------------------------------------------------------------------------------------------
 
-int ABR_search (tree_pointer T, int k) {
+int BRT_search (tree_pointer T, int k) {
     
     // search element in the tree
     //
@@ -384,10 +383,10 @@ int ABR_search (tree_pointer T, int k) {
     if (T->key==k) return 1;
     
     // if the key of T is greater than k it will be in the left subtree, so I call the function on the left subtree of T
-    else if (T->key>k) return ABR_search(T->sx, k);
+    else if (T->key>k) return BRT_search(T->sx, k);
     
     // if the key of T is less than k it will be in the right subtree, so I call the function on the right subtree of T
-    else return ABR_search(T->dx, k);
+    else return BRT_search(T->dx, k);
     
 }
 
@@ -400,7 +399,7 @@ int main() {
     char risposta[3]="yes";
     int numero;
     int scelta=0;
-    tree_pointer root=ABR_create();
+    tree_pointer root=BRT_create();
     
     printf("Start of the program on Trees.\n");
     
@@ -408,7 +407,7 @@ int main() {
     
     printf("Give a number to insert into the tree:\n");
     scanf("%d",&numero);
-    root=ABR_insert(root, numero);
+    root=BRT_insert(root, numero);
     
     printf("Do you want to insert another node? (write yes or no)\n");
     scanf("%s",risposta);
@@ -436,7 +435,7 @@ int main() {
     
     printf("\nInsert element to delete:");
     scanf("%d", &numero);
-    root=ABR_delete(root, numero);
+    root=BRT_delete(root, numero);
     inorder(root);
         
     }
@@ -449,7 +448,7 @@ int main() {
     
     printf("\nInsert element to add:");
     scanf("%d", &numero);
-    root=ABR_insert(root, numero);
+    root=BRT_insert(root, numero);
     printf("\nPrint the tree\n");
     inorder(root);
     
@@ -465,7 +464,7 @@ int main() {
     
     printf("\nInsert element to search:");
     scanf("%d", &numero);
-    int found=ABR_search(root, numero);
+    int found=BRT_search(root, numero);
         
         if (found){
             printf("The element is present in the tree");
@@ -517,7 +516,7 @@ int main() {
                 
                 if (numero==root->key){
                     
-                    ABR_destroy(root);
+                    BRT_destroy(root);
                     root=NULL;
                     printf("\nYou emptied the tree\n");
                     
@@ -525,7 +524,7 @@ int main() {
                 
                 else {
                     
-                    ABR_destroy_key(root, numero);
+                    BRT_destroy_key(root, numero);
                     printf("\nPrint the tree\n");
                     inorder(root);
                     
@@ -537,7 +536,7 @@ int main() {
         
         if (scelta==6) {
             
-            ABR_destroy(root);
+            BRT_destroy(root);
             root=NULL;
             printf("The tree has been deleted");
             
