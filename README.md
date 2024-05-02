@@ -1,7 +1,7 @@
-# BinaryResearchTrees
+# BinarySearchTrees
 
-This repository contains C functions for working with Binary Search Trees (BRT), specifically:
-- Create a BRT
+This repository contains C functions for working with Binary Search Trees (BST), specifically:
+- Create a BST
 - Destroy it
 - Print it
 - Search an element
@@ -13,11 +13,11 @@ This repository contains C functions for working with Binary Search Trees (BRT),
 
 - [Structures](#structures)
 - [Functions](#functions)
-  - [BRT_create](#brt_create)
-  - [BRT_insert](#brt_insert)
-  - [BRT_delete](#brt_delete)
-  - [BRT_destroy](#brt_destroy)
-  - [BRT_search](#brt_search)
+  - [BST_create](#bst_create)
+  - [BST_insert](#bst_insert)
+  - [BST_delete](#bst_delete)
+  - [BST_destroy](#bst_destroy)
+  - [BST_search](#bst_search)
   - [Printing Functions](#printing-functions)
     - [inorder](#inorder)
     - [preOrder](#preorder)
@@ -38,10 +38,10 @@ struct tree {
 
 ## Functions
 
-### BRT_create
+### BST_create
 
 ```c
-tree_pointer BRT_create();
+tree_pointer BST_create();
 ```
 
 Creates an empty Binary Search Tree.
@@ -52,10 +52,10 @@ Creates an empty Binary Search Tree.
 **Output:**
 - `tree_pointer`: Pointer to the root of the newly created tree.
 
-### BRT_insert
+### BST_insert
 
 ```c
-tree_pointer BRT_insert(tree_pointer T, int key);
+tree_pointer BST_insert(tree_pointer T, int key);
 ```
 
 Inserts a node with the given key into the Binary Search Tree.
@@ -67,10 +67,10 @@ Inserts a node with the given key into the Binary Search Tree.
 **Output:**
 - `tree_pointer`: Pointer to the modified tree.
 
-### BRT_delete
+### BST_delete
 
 ```c
-tree_pointer BRT_delete(tree_pointer T, int key);
+tree_pointer BST_delete(tree_pointer T, int key);
 ```
 
 Deletes the node with the given key from the Binary Search Tree.
@@ -82,10 +82,10 @@ Deletes the node with the given key from the Binary Search Tree.
 **Output:**
 - `tree_pointer`: Pointer to the modified tree.
 
-### BRT_destroy
+### BST_destroy
 
 ```c
-void BRT_destroy(tree_pointer T);
+void BST_destroy(tree_pointer T);
 ```
 
 Destroys the entire Binary Search Tree.
@@ -96,10 +96,10 @@ Destroys the entire Binary Search Tree.
 **Output:**
 - None
 
-### BRT_search
+### BST_search
 
 ```c
-int BRT_search(tree_pointer T, int k);
+int BST_search(tree_pointer T, int k);
 ```
 
 Searches for an element with the given key in the Binary Search Tree.
